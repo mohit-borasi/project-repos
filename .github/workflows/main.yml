@@ -1,0 +1,30 @@
+name: work
+
+on: push
+
+jobs:
+  user_acceptence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: downolad
+        uses: actions/checkout@v4
+
+      - name: node enviroment
+        uses: actions/setup-node@v4
+        with:
+         node-version: 24
+
+      - name: install depedency
+        run: npm ci
+
+      - name: build
+        run: npm run build
+
+      - name: create build
+        uses: actions/uploads-artifacts@v4
+        with:
+          name: upload project 
+          path: dist
+          retention-days: 7
+
+        
