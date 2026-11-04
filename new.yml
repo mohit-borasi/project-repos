@@ -1,0 +1,29 @@
+name: workflow
+
+on: push
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: put code in runner machine
+        uses: checkout/actions@v4
+
+      - name: setup node enviroment
+        uses: checkout/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: install depedency
+        run: npm ci
+
+      - name: create build
+        run: npm run build
+
+      
+          
+
+
+
+      
